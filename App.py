@@ -5,8 +5,10 @@ import pandas as pd
 import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import plotly.graph_objects as ply
+import openairec
 
-model_path = './downloaded_standardpoor_model.h5'
+
+model_path = './standardpoor_model.h5'
 
 @st.cache_resource
 def load_model():
@@ -18,6 +20,39 @@ def load_model():
         st.error(str(e))
         return None
     
+# Function to customize the sidebar style
+def customize_sidebar():
+    st.markdown(
+        """
+        <style>
+        .sidebar .sidebar-content {
+            background: linear-gradient(45deg, #4E2A84, #964B00);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .sidebar .sidebar-content .stButton {
+            color: #4E2A84;
+            background-color: #FFD700;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Customizing the sidebar
+customize_sidebar()
+
+# Sidebar introduction
+st.sidebar.image('stock_analysis_image.jpg', caption='Stock Analysis', use_column_width=True)
+st.sidebar.title("Welcome!")
+st.sidebar.write("Explore and analyze stock market trends with this intuitive tool.")
+
+
+# Main Title
+
 st.title("Stock Market Trend Forecaster and Risk Analyzer")
 st.text("""
     Note: The purpose of this tool is to provide an overview of overall trends with respect to the closing price! 
@@ -111,6 +146,12 @@ if 'stock_data' in locals():
 
 if 'stock_data' in locals():  
     st.subheader(f"Risk Analysis for {selected_stocks} stock")
+    st.text("""
+        One of the Key Concepts in Risk Analysis for Stock Markets involves Volatility Analysis.
+        It is a measure of the dispersion of returns for a given security or market index over time.
+        High volatility implies a greater potential for large price swings, indicating increased risk,
+        while low volatility suggests more stable and predictable price movements.
+    """)
 
     volatility_window = 21
     
@@ -120,7 +161,7 @@ if 'stock_data' in locals():
     # Plot volatility
     fig_volatility = ply.Figure()
     fig_volatility.add_trace(ply.Scatter(x=stock_data.index, y=stock_data['Volatility'], mode='lines', name='Volatility', line=dict(color='orange')))
-    fig_volatility.update_layout(title='Volatility Analysis',
+    fig_volatility.update_layout(title='Historical Volatility Analysis',
                                 xaxis=dict(title='Time (days)'),
                                 yaxis=dict(title='Volatility'),
                                 legend=dict(x=0, y=1, traceorder='normal'))
