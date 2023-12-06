@@ -10,7 +10,7 @@ This Streamlit application & associated code implements a simple stocktrendforec
 # Handling App Errors
 To address some potential sources of errors within the application, I have :
 
-- Streamlined user input by enabling direct date selection from the calendar.
+- Streamlined user input by enabling direct date selection from the calendar and for Stock Selection Option.
 - Limited the date range to mitigate potential errors, providing more control over data inputs and reducing the risk of issues related to incompatible or unexpected date formats.
 - Implemented a comprehensive try-except block during model loading to catch any issues associated with the loading process.
 - Verified that users can only advance after successfully downloading data from Yahoo Finance during the data retrieval process.
