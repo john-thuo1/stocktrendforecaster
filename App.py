@@ -5,7 +5,6 @@ import pandas as pd
 import streamlit as st
 from sklearn.preprocessing import MinMaxScaler
 import plotly.graph_objects as ply
-import openairec
 
 
 model_path = './standardpoor_model.h5'
