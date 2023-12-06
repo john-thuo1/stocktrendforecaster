@@ -45,7 +45,7 @@ def customize_sidebar():
 customize_sidebar()
 
 # Sidebar introduction
-st.sidebar.image('stock_analysis_image.jpg', caption='Stock Analysis', use_column_width=True)
+st.sidebar.image('./stock_analysis_image.jpg', caption='Stock Analysis', use_column_width=True)
 st.sidebar.title("Welcome!")
 st.sidebar.write("Explore and analyze stock market trends with this intuitive tool.")
 
